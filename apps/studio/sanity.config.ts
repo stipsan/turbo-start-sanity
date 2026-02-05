@@ -32,12 +32,7 @@ export default defineConfig({
       resolve: {
         locations,
       },
-      previewUrl: {
-        origin: getPresentationUrl(),
-        previewMode: {
-          enable: "/api/presentation-draft",
-        },
-      },
+      previewUrl: getPresentationUrl(),
     }),
     structureTool({
       structure,

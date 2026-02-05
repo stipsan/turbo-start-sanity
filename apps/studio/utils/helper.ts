@@ -168,16 +168,20 @@ export function createPageTemplate() {
  * @throws {Error} If SANITY_STUDIO_PRESENTATION_URL is not set in production
  */
 export const getPresentationUrl = () => {
-  if (process.env.NODE_ENV === "development") {
-    return "http://localhost:3000";
-  }
+  let presentationUrl = process.env.SANITY_STUDIO_PRESENTATION_URL;
 
-  const presentationUrl = process.env.SANITY_STUDIO_PRESENTATION_URL;
   if (!presentationUrl) {
-    throw new Error(
-      "SANITY_STUDIO_PRESENTATION_URL must be set in production environment"
-    );
+    return "/deploy-web/index.html";
   }
 
-  return presentationUrl;
+  if (process.env.NODE_ENV === "development") {
+    presentationUrl = "http://localhost:3000";
+  }
+
+  return {
+    origin: presentationUrl,
+    previewMode: {
+      enable: "/api/presentation-draft",
+    },
+  };
 };

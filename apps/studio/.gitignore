@@ -33,3 +33,5 @@
 functions/**/.env*
 functions/**/.build/
 functions/**/node_modules/
+.vercel
+.env*.local

@@ -61,6 +61,14 @@ export default defineCliConfig({
     autoUpdates: false,
   },
   vite: {
+    build: {
+      rollupOptions: {
+        input: {
+          // NOTE: this is only needed as a fallback for setting up the nextjs deployment, once you have that you can delete this and the related code
+          deploy: path.resolve(__dirname, "deploy-web/index.html"),
+        },
+      },
+    },
     plugins: [tsconfigPaths()],
     resolve: {
       alias: {
